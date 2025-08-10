@@ -34,6 +34,12 @@
   --font-subheading: var(--font-subheading);
   --font-body: var(--font-body);
   --font-body-bold: var(--font-body-bold);
+
+  --text-body: 1rem;
+  --text-body-bold: 1.25rem;
+  --text-subheading: 1.5rem;
+  --text-heading: 3rem;
+  --text-title: 4.5rem;
 }
 
 body {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import NavBar from "@/lib/components/NavBar";
 
 const editorialHeading = localFont({
   src: "../materials/fonts/editorial-today.regular.ttf",
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body
         className={`${editorialHeading.variable} ${poppinsSubheading.variable} ${poppinsSemiBold.variable} ${poppinsBody.className} antialiased`}
       >
+        <NavBar />
         {children}
       </body>
     </html>
