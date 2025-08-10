@@ -40,6 +40,8 @@
   --text-subheading: 1.5rem;
   --text-heading: 3rem;
   --text-title: 4.5rem;
+
+  --shadow-custom: 0 0 4px 0 rgba(0, 0, 0, 0.1);
 }
 
 body {
