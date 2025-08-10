@@ -1,22 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background-white: #ffffff;
+  --background-light: #ece8df;
+  --background-green: #2e3c2b;
+  --background-light-green: #dcdfd4;
+  --background-orange: #eaad93;
+  --background-brown: #785c4a;
+
+  --foreground-green: #204e2c;
+  --foreground-black: #1c120e;
+
+  --cta: #fe601f;
+  --cta-focus: #d84a0f;
+  --error: #dd0004;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-background: var(--background-white);
+  --color-foreground: var(--foreground-black);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background-light: var(--background-light);
+  --color-background-green: var(--background-green);
+  --color-background-light-green: var(--background-light-green);
+  --color-background-orange: var(--background-orange);
+  --color-background-brown: var(--background-brown);
+
+  --color-cta: var(--cta);
+  --color-cta-focus: var(--cta-focus);
+  --color-error: var(--error);
+
+  --font-heading: var(--font-heading);
+  --font-subheading: var(--font-subheading);
+  --font-body: var(--font-body);
+  --font-body-bold: var(--font-body-bold);
 }
 
 body {

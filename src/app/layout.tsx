@@ -1,15 +1,29 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const editorialHeading = localFont({
+  src: "../materials/fonts/editorial-today.regular.ttf",
+  variable: "--font-heading",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const poppinsSubheading = Poppins({
+  variable: "--font-subheading",
   subsets: ["latin"],
+  weight: ["500"],
+});
+
+const poppinsSemiBold = Poppins({
+  variable: "--font-body-bold",
+  subsets: ["latin"],
+  weight: ["600"],
+});
+
+const poppinsBody = Poppins({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -25,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${editorialHeading.variable} ${poppinsSubheading.variable} ${poppinsSemiBold.variable} ${poppinsBody.className} antialiased`}
       >
         {children}
       </body>
