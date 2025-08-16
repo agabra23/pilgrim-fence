@@ -3,9 +3,10 @@ import { Poppins } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import NavBar from "@/lib/components/NavBar";
+import Footer from "@/lib/components/Footer";
 
 const editorialHeading = localFont({
-  src: "../materials/fonts/editorial-today.regular.ttf",
+  src: "../lib/fonts/editorial-today.regular.ttf",
   variable: "--font-heading",
 });
 
@@ -44,6 +45,7 @@ export default function RootLayout({
       >
         <NavBar />
         {children}
+        <Footer />
       </body>
     </html>
   );

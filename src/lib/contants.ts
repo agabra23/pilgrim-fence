@@ -15,4 +15,11 @@ const pathnames = {
   },
 };
 
-export { phoneNumber, pathnames };
+const companyEmail = "info@pilgrimfenceco.com";
+
+const address = "P.O. Box 1112, Plymouth MA";
+const zipCode = "02362";
+
+const copyright = `© ${new Date().getFullYear()} by Pilgrim Fence LLC`;
+
+export { phoneNumber, pathnames, companyEmail, address, zipCode, copyright };

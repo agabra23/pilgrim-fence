@@ -21,11 +21,11 @@ const NavBar = () => {
   console.log("Menu open state:", isMenuOpen);
 
   return (
-    <nav className="bg-background-light w-full px-4">
-      <div className="max-w-[40rem] md:container mx-auto py-6 flex justify-around md:justify-between items-center  text-body-bold">
-        <div className="xl:hidden flex items-center w-[203px]">
+    <nav className="bg-background-light w-full">
+      <div className="max-w-[40rem] md:container mx-auto py-6 flex justify-between md:justify-between items-center  text-body-bold">
+        <div className="xl:hidden flex items-center lg:w-[203px] w-auto">
           <button
-            className="appearance-none outline-none no-underline cursor-pointer"
+            className="appearance-none outline-none no-underline cursor-pointer ml-2"
             onClick={() => setIsMenuOpen(true)}
           >
             <Bars2Icon className="size-8" />
@@ -53,7 +53,7 @@ const NavBar = () => {
                 </Link>
                 <a
                   href={`tel:${phoneNumber}`}
-                  className="group inline-block xl:hidden"
+                  className="group inline-block xl:hidden font-body-bold"
                 >
                   <span>{phoneNumber}</span>
                   <PhoneArrowUpRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-3 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
@@ -72,104 +72,66 @@ const NavBar = () => {
           height={111}
         />
         <div className="font-body-bold hidden xl:flex gap-8 items-center">
-          <Link
-            href={pathnames.home}
-            className={`hover:underline underline-offset-4 cursor-pointer ${
-              location === pathnames.home ? "underline underline-offset-4" : ""
-            }`}
-          >
+          <SubLink href={pathnames.home} isActive={location === pathnames.home}>
             Home
-          </Link>
+          </SubLink>
           <DropdownLink label="Services">
-            <Link
+            <SubLink
               href={pathnames.fencing.wood}
-              className={`cursor-pointer ${
-                location === pathnames.fencing.wood
-                  ? "underline underline-offset-2"
-                  : ""
-              }`}
+              isActive={location === pathnames.fencing.wood}
             >
               Wood Fencing
-            </Link>
-            <Link
+            </SubLink>
+            <SubLink
               href={pathnames.fencing.vinyl}
-              className={`cursor-pointer ${
-                location === pathnames.fencing.vinyl
-                  ? "underline underline-offset-2"
-                  : ""
-              }`}
+              isActive={location === pathnames.fencing.vinyl}
             >
               Vinyl Fencing
-            </Link>
-            <Link
+            </SubLink>
+            <SubLink
               href={pathnames.fencing.aluminum}
-              className={`cursor-pointer ${
-                location === pathnames.fencing.aluminum
-                  ? "underline underline-offset-2"
-                  : ""
-              }`}
+              isActive={location === pathnames.fencing.aluminum}
             >
               Aluminum Fencing
-            </Link>
-            <Link
+            </SubLink>
+            <SubLink
               href={pathnames.fencing.chainLink}
-              className={`cursor-pointer ${
-                location === pathnames.fencing.chainLink
-                  ? "underline underline-offset-2"
-                  : ""
-              }`}
+              isActive={location === pathnames.fencing.chainLink}
             >
               Chain-Link Fencing
-            </Link>
-            <Link
+            </SubLink>
+            <SubLink
               href={pathnames.howItWorks}
-              className={`cursor-pointer ${
-                location === pathnames.howItWorks
-                  ? "underline underline-offset-2"
-                  : ""
-              }`}
+              isActive={location === pathnames.howItWorks}
             >
               How it works
-            </Link>
+            </SubLink>
           </DropdownLink>
           <DropdownLink label="About">
-            <Link
+            <SubLink
               href={pathnames.about}
-              className={`cursor-pointer ${
-                location === pathnames.about
-                  ? "underline underline-offset-2"
-                  : ""
-              }`}
+              isActive={location === pathnames.about}
             >
               About us
-            </Link>
-            <Link
-              href={pathnames.faq}
-              className={`cursor-pointer ${
-                location === pathnames.faq ? "underline underline-offset-2" : ""
-              }`}
-            >
+            </SubLink>
+            <SubLink href={pathnames.faq} isActive={location === pathnames.faq}>
               FAQ
-            </Link>
+            </SubLink>
           </DropdownLink>
-          <Link
+          <SubLink
             href={pathnames.contact}
-            className={`hover:underline underline-offset-4 cursor-pointer ${
-              location === pathnames.contact
-                ? "underline underline-offset-4"
-                : ""
-            }`}
+            isActive={location === pathnames.contact}
           >
             Contact
-          </Link>
+          </SubLink>
         </div>
         <a
           href={`tel:${phoneNumber}`}
-          className="hover:underline underline-offset-4 hidden xl:inline"
+          className="custom-underline hidden xl:inline font-body-bold"
         >
           {phoneNumber}
         </a>
-        <div className="hidden md:inline">
+        <div className="hidden lg:inline mr-2">
           <CtaButton text="Request a quote" />
         </div>
       </div>
@@ -179,7 +141,7 @@ const NavBar = () => {
 
 const DropdownMenu = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="absolute z-10 top-[calc(100%+1rem)] left-0 w-[200px] bg-background shadow-custom rounded-lg p-4 flex-col gap-4 hidden group-focus-within:flex transition-all duration-300 text-sm font-body-bold opacity-0 group-focus-within:opacity-100">
+    <div className="absolute z-10 top-[calc(100%+1rem)] left-0 w-[200px] bg-background shadow-custom rounded-lg p-4 flex-col items-start gap-4 hidden group-focus-within:flex transition-all duration-300 text-sm font-body-bold opacity-0 group-focus-within:opacity-100">
       {children}
     </div>
   );
@@ -194,12 +156,33 @@ const DropdownLink = ({
 }) => {
   return (
     <div className="relative group">
-      <button className="appearance-none outline-none no-underline hover:underline underline-offset-4 focus:underline cursor-pointer">
-        <span>{label}</span>
+      <button className="appearance-none outline-none no-underline cursor-pointer">
+        <span className="custom-underline">{label}</span>
         <ChevronUpIcon className="inline ml-1 size-5 transition-all duration-300 group-focus-within:rotate-180" />
       </button>
       <DropdownMenu>{children}</DropdownMenu>
     </div>
+  );
+};
+
+const SubLink = ({
+  children,
+  href,
+  isActive,
+}: {
+  children: React.ReactNode;
+  href: string;
+  isActive: boolean;
+}) => {
+  return (
+    <Link
+      href={href}
+      className={`cursor-pointer custom-underline ${
+        isActive ? "current-page" : ""
+      }`}
+    >
+      {children}
+    </Link>
   );
 };
 
