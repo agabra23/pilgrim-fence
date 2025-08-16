@@ -21,6 +21,7 @@
 @theme inline {
   --color-background: var(--background-white);
   --color-foreground: var(--foreground-black);
+  --color-foreground-green: var(--foreground-green);
 
   --color-background-light: var(--background-light);
   --color-background-green: var(--background-green);

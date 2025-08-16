@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CtaButton from "./CtaButton";
 import { pathnames, phoneNumber } from "../contants";
 import { NavLinkProps } from "../types";
@@ -20,18 +20,30 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   console.log("Menu open state:", isMenuOpen);
 
+  // Disable body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
   return (
     <nav className="bg-background-light w-full">
-      <div className="max-w-[40rem] md:container mx-auto py-6 flex justify-between md:justify-between items-center  text-body-bold">
+      <div className="max-w-[40rem] md:container mx-auto py-0 lg:py-6 flex justify-between md:justify-between items-center  text-body-bold">
         <div className="xl:hidden flex items-center lg:w-[203px] w-auto">
           <button
             className="appearance-none outline-none no-underline cursor-pointer ml-2"
             onClick={() => setIsMenuOpen(true)}
           >
-            <Bars2Icon className="size-8" />
+            <Bars2Icon className="size-8 ml-2" />
           </button>
           <div
-            className={`absolute z-100 top-0 left-0 w-full h-0 bg-background-light opacity-0 transition-all duration-300 ${
+            className={`fixed z-100 top-0 left-0 w-full h-0 bg-background-light opacity-0 transition-all duration-300 ${
               isMenuOpen
                 ? "opacity-100 h-full pointer-events-auto"
                 : "pointer-events-none"
@@ -43,11 +55,35 @@ const NavBar = () => {
                 onClick={() => setIsMenuOpen(false)}
               />
               <div className="p-10 text-body-bold font-body-bold flex flex-col gap-4">
-                <Link href={pathnames.home} className="group cursor-pointer">
+                <Link
+                  href={pathnames.home}
+                  className="group cursor-pointer"
+                  onNavigate={() => setIsMenuOpen(false)}
+                >
                   <span>Home</span>
                   <ChevronRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
-                <Link href={pathnames.contact} className="group cursor-pointer">
+                <Link
+                  href={pathnames.fencing.wood}
+                  className="group cursor-pointer"
+                  onNavigate={() => setIsMenuOpen(false)}
+                >
+                  <span>Services</span>
+                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                </Link>
+                <Link
+                  href={pathnames.about}
+                  className="group cursor-pointer"
+                  onNavigate={() => setIsMenuOpen(false)}
+                >
+                  <span>About</span>
+                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                </Link>
+                <Link
+                  href={pathnames.contact}
+                  className="group cursor-pointer"
+                  onNavigate={() => setIsMenuOpen(false)}
+                >
                   <span>Contact</span>
                   <ChevronRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
@@ -58,7 +94,7 @@ const NavBar = () => {
                   <span>{phoneNumber}</span>
                   <PhoneArrowUpRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-3 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                 </a>
-                <div className="block md:hidden">
+                <div className="md:hidden flex justify-start">
                   <CtaButton text="Request a quote" />
                 </div>
               </div>

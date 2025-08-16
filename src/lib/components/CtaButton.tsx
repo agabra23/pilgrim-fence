@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { pathnames } from "../contants";
@@ -20,7 +22,7 @@ const CtaButton = ({
       }}
       className={`bg-cta ${
         type === "primary"
-          ? "text-white border focus-within:bg-cta-focus"
+          ? "text-white focus-within:bg-cta-focus"
           : "text-foreground bg-transparent border border-foreground focus-within:bg-foreground focus-within:text-white"
       } text-body text-center h-[42px] py-[10px] px-6 w-[${
         size === "small" ? "134" : "203"
