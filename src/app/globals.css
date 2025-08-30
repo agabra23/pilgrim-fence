@@ -91,3 +91,62 @@ body {
 .custom-underline:focus-within::after {
   transform: scaleX(1);
 }
+
+.dotted-line-left,
+.dotted-line-right {
+  position: relative !important;
+}
+
+.dotted-line-left {
+  padding-right: 3.5rem !important;
+}
+
+.dotted-line-right {
+  padding-left: 3.5rem !important;
+}
+
+.dotted-line-left::after,
+.dotted-line-right::after {
+  content: "";
+  position: absolute !important;
+  top: 0 !important;
+  width: 50% !important;
+  height: 1px !important;
+  border-top: 1px dashed var(--background-light-green) !important;
+}
+
+.dotted-line-right::after {
+  left: 0 !important;
+}
+
+.dotted-line-left::after {
+  right: 0 !important;
+}
+
+.dots {
+  position: relative !important;
+}
+
+.dots::after {
+  content: "";
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50% !important;
+  transform: translate(calc(50% + 1px), -50%) !important;
+  background: var(--background-light-green) !important;
+}
+
+.dots::before {
+  content: "";
+  position: absolute !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50% !important;
+  transform: translate(calc(50% + 1px), 50%) !important;
+  background: var(--background-light-green) !important;
+}
