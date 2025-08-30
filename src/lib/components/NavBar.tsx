@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import CtaButton from "./CtaButton";
-import { pathnames, phoneNumber } from "../contants";
+import { pathnames, phoneNumber } from "../constants";
 import { NavLinkProps } from "../types";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -80,6 +80,14 @@ const NavBar = () => {
                   <ChevronRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
                 <Link
+                  href={pathnames.gallery}
+                  className="group cursor-pointer"
+                  onNavigate={() => setIsMenuOpen(false)}
+                >
+                  <span>Gallery</span>
+                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                </Link>
+                <Link
                   href={pathnames.contact}
                   className="group cursor-pointer"
                   onNavigate={() => setIsMenuOpen(false)}
@@ -150,6 +158,12 @@ const NavBar = () => {
             >
               About us
             </SubLink>
+            <SubLink
+              href={pathnames.gallery}
+              isActive={location === pathnames.gallery}
+            >
+              Our Work
+            </SubLink>
             <SubLink href={pathnames.faq} isActive={location === pathnames.faq}>
               FAQ
             </SubLink>
@@ -175,9 +189,21 @@ const NavBar = () => {
   );
 };
 
-const DropdownMenu = ({ children }: { children: React.ReactNode }) => {
+const DropdownMenu = ({
+  children,
+  isOpen,
+}: {
+  children: React.ReactNode;
+  isOpen: boolean;
+}) => {
   return (
-    <div className="absolute z-10 top-[calc(100%+1rem)] left-0 w-[200px] bg-background shadow-custom rounded-lg p-4 flex-col items-start gap-4 hidden group-focus-within:flex transition-all duration-300 text-sm font-body-bold opacity-0 group-focus-within:opacity-100">
+    <div
+      className={`absolute z-10 top-[calc(100%+1rem)] left-0 w-[200px] bg-background shadow-custom rounded-lg p-4 flex-col items-start gap-4 transition-all duration-300 text-sm font-body-bold transform origin-top ${
+        isOpen
+          ? "flex opacity-100 scale-100"
+          : "hidden opacity-0 scale-95 pointer-events-none"
+      }`}
+    >
       {children}
     </div>
   );
@@ -190,13 +216,77 @@ const DropdownLink = ({
   children: React.ReactNode;
   label: string;
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const wrapperRef = React.useRef<HTMLDivElement | null>(null);
+
+  // Close when clicking outside or when focus leaves the wrapper
+  useEffect(() => {
+    function onDocClick(e: MouseEvent) {
+      if (!wrapperRef.current) return;
+      if (!wrapperRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, []);
+
+  // Close on escape
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setIsOpen(false);
+    }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
+
+  // Attach a close callback to child links so clicking them closes the menu
+  const childrenWithClose = React.Children.map(children, (child) => {
+    if (!React.isValidElement(child)) return child;
+    const childEl = child as React.ReactElement<Record<string, unknown>>;
+    const props = childEl.props as Record<string, unknown>;
+    const existingOnClick = props.onClick as
+      | ((e?: unknown) => unknown)
+      | undefined;
+    return React.cloneElement(childEl, {
+      onClick: (e: React.MouseEvent) => {
+        if (typeof existingOnClick === "function") {
+          try {
+            (existingOnClick as (..._args: unknown[]) => unknown)(e);
+          } catch {
+            /* ignore */
+          }
+        }
+        setIsOpen(false);
+      },
+    });
+  });
+
   return (
-    <div className="relative group">
-      <button className="appearance-none outline-none no-underline cursor-pointer">
+    <div
+      ref={wrapperRef}
+      className="relative"
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          // prevent page scroll on space
+          e.preventDefault();
+        }
+      }}
+    >
+      <button
+        aria-expanded={isOpen}
+        aria-haspopup="menu"
+        className="appearance-none outline-none no-underline cursor-pointer"
+        onClick={() => setIsOpen((s) => !s)}
+      >
         <span className="custom-underline">{label}</span>
-        <ChevronUpIcon className="inline ml-1 size-5 transition-all duration-300 group-focus-within:rotate-180" />
+        <ChevronUpIcon
+          className={`inline ml-1 size-5 transition-all duration-300 ${
+            isOpen ? "rotate-180" : "rotate-0"
+          }`}
+        />
       </button>
-      <DropdownMenu>{children}</DropdownMenu>
+      <DropdownMenu isOpen={isOpen}>{childrenWithClose}</DropdownMenu>
     </div>
   );
 };
@@ -205,14 +295,17 @@ const SubLink = ({
   children,
   href,
   isActive,
+  onClick,
 }: {
   children: React.ReactNode;
   href: string;
   isActive: boolean;
+  onClick?: (e?: React.MouseEvent) => void;
 }) => {
   return (
     <Link
       href={href}
+      onClick={onClick}
       className={`cursor-pointer custom-underline ${
         isActive ? "current-page" : ""
       }`}

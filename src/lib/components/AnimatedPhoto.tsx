@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React, { ReactNode } from "react";
-import { pathnames } from "../contants";
+import { pathnames } from "../constants";
 
 export const AnimatedPhoto = ({
   children,

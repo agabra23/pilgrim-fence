@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { AnimatedPhoto } from "../components/AnimatedPhoto";
-import { pathnames } from "../contants";
+import { pathnames } from "../constants";
 import CtaButton from "../components/CtaButton";
 
 const ServicesSection = () => (

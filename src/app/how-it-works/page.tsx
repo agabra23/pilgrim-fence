@@ -1,8 +1,10 @@
 "use client";
 
 import CtaButton from "@/lib/components/CtaButton";
-import { companyEmail } from "@/lib/contants";
+import { companyEmail } from "@/lib/constants";
 import useScreenSize from "@/lib/hooks/ScreenSize";
+import CtaSection from "@/lib/shared-sections/CtaSection";
+import HeroSection from "@/lib/shared-sections/HeroSection";
 import ServicesSection from "@/lib/shared-sections/ServicesSection";
 import Image from "next/image";
 import React from "react";
@@ -14,55 +16,23 @@ const HowItWorks = () => {
 
   return (
     <>
-      <HeroSection />
+      <HeroSection
+        title="How it works"
+        text="At Pilgrim Fence Co., we make getting the perfect fence easy and stress-free. From requesting a free quote to final installation, our expert team is with you every step of the way to ensure your project is completed on time, on budget, and with top-quality materials."
+        buttonText="Learn More"
+      />
       {isMobile ? <StepsSectionMobile /> : <StepsSectionDesktop />}
       <ServicesSection />
       <ProductsSection />
-      <CtaSection />
+      <CtaSection
+        text="Interested in our fence installation services?"
+        buttonText="Request a Quote"
+      />
     </>
   );
 };
 
 export default HowItWorks;
-
-const HeroSection = () => (
-  <section className="relative text-white text-body font-body">
-    {/* <Image
-          className="absolute -z-10 left-0 top-0 w-full h-full object-cover"
-          src="/photos/hero_image.jpg"
-          alt="Wooden Fence"
-          layout="fill"
-        /> */}
-    <div
-      className="absolute -z-10 left-0 top-0 w-full h-full"
-      style={{
-        backgroundImage:
-          "linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.5) 100%), url('/photos/hero_image.jpg')",
-        backgroundColor: "lightgray",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        width: "100%",
-        height: "100%",
-      }}
-      aria-hidden="true"
-    />
-    <div className="container mx-auto p-6 lg:py-16 relative">
-      <div className="max-w-2xl my-28">
-        <h1 className="font-heading text-title leading-normal">How it works</h1>
-        <p className="mt-4 mb-10">
-          At Pilgrim Fence Co., we make getting the perfect fence easy and
-          stress-free. From requesting a free quote to final installation, our
-          expert team is with you every step of the way to ensure your project
-          is completed on time, on budget, and with top-quality materials.
-        </p>
-        <div className="flex justify-start">
-          <CtaButton text="Learn More" />
-        </div>
-      </div>
-    </div>
-  </section>
-);
 
 const StepsSectionDesktop = () => (
   <section className="bg-background-green text-white text-body font-body">
@@ -211,17 +181,6 @@ const ProductsSection = () => (
           />
         </div>
       </div>
-    </div>
-  </section>
-);
-
-const CtaSection = () => (
-  <section className="bg-background text-foreground text-body font-body">
-    <div className="container mx-auto px-6 py-16 flex flex-col gap-4 justify-center items-center">
-      <p className="font-body text-body text-center">
-        Interested in our fence installation services?
-      </p>
-      <CtaButton text="Request a quote" />
     </div>
   </section>
 );

@@ -9,7 +9,7 @@ import {
   copyright,
   phoneNumber,
   zipCode,
-} from "../contants";
+} from "../constants";
 
 const Footer = () => {
   return (

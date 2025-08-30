@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { pathnames } from "../contants";
+import { pathnames } from "../constants";
 
 const CtaButton = ({
   text,
@@ -24,7 +24,9 @@ const CtaButton = ({
         type === "primary"
           ? "text-white focus-within:bg-cta-focus"
           : "text-foreground bg-transparent border border-foreground focus-within:bg-foreground focus-within:text-white"
-      } text-body text-center h-[42px] py-[10px] px-6 w-[${
+      } text-[${
+        size === "small" ? ".875rem" : "1rem"
+      }] text-center h-[42px] py-[10px] px-6 w-[${
         size === "small" ? "134" : "203"
       }px] rounded-[40px] flex items-center justify-center cursor-pointer hover:rounded-none transition-all duration-300`}
     >

@@ -40,6 +40,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          href="https://cdn.jsdelivr.net/npm/daisyui@5"
+          rel="stylesheet"
+          type="text/css"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+      </head>
       <body
         className={`${editorialHeading.variable} ${poppinsSubheading.variable} ${poppinsSemiBold.variable} ${poppinsBody.className} antialiased`}
       >
