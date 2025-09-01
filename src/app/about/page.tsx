@@ -8,11 +8,12 @@ import React from "react";
 const About = () => (
   <>
     <HeroSection
-      title="A family owned company with a rich history"
-      text="A trusted family owned and operated fence company, serving Plymouth and the South Shore for over 40 years."
+      title="A family-owned company with a rich history"
+      text="A trusted family-owned and operated fence company, serving Plymouth and the South Shore for over 40 years."
       buttonText="Learn More"
+      href="#about-about"
     />
-    <AboutSection />
+    <AboutSection id="about-about" />
     {/* <DifferentSection /> */}
     <QuoteSection />
     <TestimonialSection />

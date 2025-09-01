@@ -1,13 +1,16 @@
 import CtaButton from "../components/CtaButton";
+import { pathnames } from "../constants";
 
 const HeroSection = ({
   title,
   text,
   buttonText,
+  href = pathnames.contact,
 }: {
   title: string;
   text: string;
   buttonText: string;
+  href?: string;
 }) => (
   <section className="relative text-white text-body font-body">
     <div
@@ -29,7 +32,7 @@ const HeroSection = ({
         <h1 className="font-heading text-title leading-tight">{title}</h1>
         <p className="mt-4 mb-10">{text}</p>
         <div className="flex justify-start">
-          <CtaButton text={buttonText} />
+          <CtaButton text={buttonText} href={href} />
         </div>
       </div>
     </div>

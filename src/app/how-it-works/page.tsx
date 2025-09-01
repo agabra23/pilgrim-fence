@@ -20,14 +20,14 @@ const HowItWorks = () => {
         title="How it works"
         text="At Pilgrim Fence Co., we make getting the perfect fence easy and stress-free. From requesting a free quote to final installation, our expert team is with you every step of the way to ensure your project is completed on time, on budget, and with top-quality materials."
         buttonText="Learn More"
+        href="#steps"
       />
       {isMobile ? <StepsSectionMobile /> : <StepsSectionDesktop />}
       <ServicesSection />
       <ProductsSection />
-      <CtaSection
-        text="Interested in our fence installation services?"
-        buttonText="Request a Quote"
-      />
+      <CtaSection buttonText="Request a Quote">
+        Interested in our fence installation services?
+      </CtaSection>
     </>
   );
 };
@@ -35,7 +35,10 @@ const HowItWorks = () => {
 export default HowItWorks;
 
 const StepsSectionDesktop = () => (
-  <section className="bg-background-green text-white text-body font-body">
+  <section
+    id="steps"
+    className="bg-background-green text-white text-body font-body"
+  >
     <div className="container mx-auto p-6 lg:py-16 flex flex-col gap-14">
       <div>
         <h2 className="m-0 p-0 font-heading text-heading">
@@ -89,7 +92,10 @@ const StepsSectionDesktop = () => (
 );
 
 const StepsSectionMobile = () => (
-  <section className="bg-background-green text-white text-body font-body">
+  <section
+    id="steps"
+    className="bg-background-green text-white text-body font-body"
+  >
     <div className="container mx-auto p-6 lg:py-16 flex flex-col gap-14">
       <div>
         <h2 className="m-0 p-0 font-heading text-heading">

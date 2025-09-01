@@ -1,8 +1,12 @@
 import Image from "next/image";
 import CtaButton from "../components/CtaButton";
+import { randomUUID } from "crypto";
 
-const AboutSection = () => (
-  <section className="bg-background-green text-white text-body font-body">
+const AboutSection = ({ id = randomUUID() }: { id: string }) => (
+  <section
+    id={id}
+    className="bg-background-green text-white text-body font-body"
+  >
     <div className="container mx-auto p-6 lg:py-16">
       <div className="flex flex-col gap-8">
         <h2 className="m-0 p-0 font-heading text-heading">About Us</h2>

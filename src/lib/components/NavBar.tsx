@@ -61,31 +61,39 @@ const NavBar = () => {
                   onNavigate={() => setIsMenuOpen(false)}
                 >
                   <span>Home</span>
-                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-focus-within:opacity-100 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
                 <Link
-                  href={pathnames.fencing.wood}
+                  href={pathnames.howItWorks}
                   className="group cursor-pointer"
                   onNavigate={() => setIsMenuOpen(false)}
                 >
-                  <span>Services</span>
-                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                  <span>How It Works</span>
+                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-focus-within:opacity-100 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
                 <Link
                   href={pathnames.about}
                   className="group cursor-pointer"
                   onNavigate={() => setIsMenuOpen(false)}
                 >
-                  <span>About</span>
-                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                  <span>About Us</span>
+                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-focus-within:opacity-100 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
                 <Link
                   href={pathnames.gallery}
                   className="group cursor-pointer"
                   onNavigate={() => setIsMenuOpen(false)}
                 >
-                  <span>Gallery</span>
-                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                  <span>Our Work</span>
+                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-focus-within:opacity-100 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                </Link>
+                <Link
+                  href={pathnames.faq}
+                  className="group cursor-pointer"
+                  onNavigate={() => setIsMenuOpen(false)}
+                >
+                  <span>FAQ</span>
+                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-focus-within:opacity-100 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
                 <Link
                   href={pathnames.contact}
@@ -93,14 +101,14 @@ const NavBar = () => {
                   onNavigate={() => setIsMenuOpen(false)}
                 >
                   <span>Contact</span>
-                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                  <ChevronRightIcon className="size-4 inline-block opacity-0 group-focus-within:opacity-100 group-hover:opacity-100 ml-2 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
                 <a
                   href={`tel:${phoneNumber}`}
                   className="group inline-block xl:hidden font-body-bold"
                 >
                   <span>{phoneNumber}</span>
-                  <PhoneArrowUpRightIcon className="size-4 inline-block opacity-0 group-hover:opacity-100 ml-3 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                  <PhoneArrowUpRightIcon className="size-4 inline-block opacity-0 group-focus-within:opacity-100 group-hover:opacity-100 ml-3 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                 </a>
                 <div className="md:hidden flex justify-start">
                   <CtaButton text="Request a quote" />

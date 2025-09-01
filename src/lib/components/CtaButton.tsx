@@ -8,14 +8,16 @@ const CtaButton = ({
   text,
   size = "regular",
   type = "primary",
+  href = pathnames.contact,
 }: {
   text: string;
   size?: "small" | "regular";
   type?: "primary" | "secondary";
+  href?: string;
 }) => {
   return (
     <Link
-      href={pathnames.contact}
+      href={href}
       onNavigate={() => {
         // Blur on navigate to remove focus outline
         (document.activeElement as HTMLElement | null)?.blur();
