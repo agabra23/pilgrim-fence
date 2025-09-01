@@ -11,9 +11,12 @@ export default function Home() {
     <>
       <HeroSection
         title="America’s Hometown Fence Company"
-        text="A trusted family-owned and operated fence company, serving Plymouth and the South Shore with professional fence installation and repair for over 40 years."
         buttonText="Request a Quote"
-      />
+      >
+        A trusted family-owned and operated fence company, serving Plymouth and
+        the South Shore with professional fence installation and repair for over
+        40 years.
+      </HeroSection>
       <AboutSection id="home-about" />
       <ServicesSection />
       <PromiseSection />

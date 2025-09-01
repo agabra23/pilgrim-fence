@@ -3,13 +3,13 @@ import { pathnames } from "../constants";
 
 const HeroSection = ({
   title,
-  text,
-  buttonText,
+  children,
+  buttonText = "",
   href = pathnames.contact,
 }: {
   title: string;
-  text: string;
-  buttonText: string;
+  children: React.ReactNode;
+  buttonText?: string;
   href?: string;
 }) => (
   <section className="relative text-white text-body font-body">
@@ -30,8 +30,8 @@ const HeroSection = ({
     <div className="container mx-auto p-6 lg:py-16 relative">
       <div className="max-w-2xl my-28">
         <h1 className="font-heading text-title leading-tight">{title}</h1>
-        <p className="mt-4 mb-10">{text}</p>
-        <div className="flex justify-start">
+        <p className="mt-4 mb-10">{children}</p>
+        <div className={"flex justify-start" + (buttonText ? "" : " hidden")}>
           <CtaButton text={buttonText} href={href} />
         </div>
       </div>
