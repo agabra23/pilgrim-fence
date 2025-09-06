@@ -2,28 +2,11 @@
 
 import React, { FormEvent, useState } from "react";
 import Form from "next/form";
-import { RadioGroup, RadioGroupItem } from "./RadioGroup";
-import { Label } from "./Label";
 import { useMultistepForm } from "../hooks/useMultiForm";
-import { MessageForm, ProductForm, UserForm } from "./FormPages";
-
-type ProductType = "wood" | "vinyl" | "aluminum" | "chain-link" | "unknown";
-type ReferenceType = "facebook" | "instagram" | "google" | "referral" | "other";
-type ContactPreference = "call" | "text" | "email" | "no-preference";
-
-type FormData = {
-  propertyType: "residential" | "commercial";
-  businessName?: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-  address?: string;
-  productTypes: ProductType[];
-  referenceTypes?: ReferenceType[];
-  contactPreferences: ContactPreference[];
-  contactMessage?: string;
-};
+import { FormData } from "../types";
+import UserForm from "./UserFormPage";
+import ProductForm from "./ProductFormPage";
+import MessageForm from "./MessageFormPages";
 
 const ContactForm = () => {
   const INITIAL_DATA: FormData = {
@@ -40,15 +23,20 @@ const ContactForm = () => {
     contactMessage: "",
   };
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState(INITIAL_DATA);
 
   const { step, steps, currentStepIndex, next, back, isFirstStep, isLastStep } =
-    useMultistepForm([<UserForm />, <ProductForm />, <MessageForm />]);
+    useMultistepForm([
+      <UserForm {...data} />,
+      <ProductForm {...data} />,
+      <MessageForm {...data} />,
+    ]);
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-
-    next();
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!isLastStep) return next();
+    // Final submission logic here
+    console.log("Form submitted:", data);
   };
 
   return (
@@ -59,19 +47,25 @@ const ContactForm = () => {
           Step {currentStepIndex + 1} of {steps.length}
         </h6>
         {/* Progress */}
-        <div className="relative w-full h-4 bg-background-orange rounded-full">
+        <div className="relative w-full h-4 bg-background-orange rounded-full mb-10">
           <div
             className="absolute top-0 left-0 h-4 bg-cta rounded-full transition-all duration-300 ease-in-out mb-10"
-            style={{ width: `${((0 + 1) / steps.length) * 100}%` }}
+            style={{
+              width: `${((currentStepIndex + 1) / steps.length) * 100}%`,
+            }}
           />
         </div>
 
         {/* Current Step */}
         {step}
         <div>
-          {!isFirstStep && <button onClick={back}>Back</button>}
-          {!isLastStep && <button onClick={next}>Next</button>}
-          {isLastStep && <button>Submit</button>}
+          {!isFirstStep && (
+            <button type="button" onClick={back}>
+              Back
+            </button>
+          )}
+          {!isLastStep && <button onSubmit={handleSubmit}>Next</button>}
+          {isLastStep && <button onSubmit={handleSubmit}>Submit</button>}
         </div>
       </div>
     </Form>

@@ -30,6 +30,8 @@
   --color-background-orange: var(--background-orange);
   --color-background-brown: var(--background-brown);
 
+  --color-destructive: var(--error);
+
   --color-cta: var(--cta);
   --color-cta-focus: var(--cta-focus);
   --color-error: var(--error);
@@ -154,4 +156,9 @@ body {
   border-radius: 50% !important;
   transform: translate(calc(50% + 1px), 50%) !important;
   background: var(--background-light-green) !important;
+}
+
+.required-field:after {
+  content: "*";
+  color: var(--error);
 }
